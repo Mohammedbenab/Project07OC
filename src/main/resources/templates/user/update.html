@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+<title>Update user</title>
+</head>
+<body>
+<div class="container">
+	  <div th:if=${messageError} class="alert alert-danger text-center" role="alert">
+	  	[[${messageError}]]
+	  </div>
+		<div class="row d-flex justify-content-center align-items-center" style="height: 700px">
+	    <div class="col-md-5 mt-2" style="background-color: black; height: 700px">				
+ 			<div class="position-absolute top-50" style="color: white">
+ 				<div class="text-center col-md-6 offset-md-3 mt-5">
+ 				<h1>User Interface functionality</h1>
+ 				<div class="mt-5">
+ 					<h2>Manager 1.3</h2>
+				</div>
+ 				</div>
+	    	</div>
+    	</div>
+    	<div class="col-md-7" style="height: 700px">
+    		<div class="row mt-4 offset-md-4">
+				<h2>Update User</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<form action="#" th:action="@{/user/update/{id}(id=${user.id})}" th:object="${user}" method="post" class="form-horizontal" style="width: 100%">
+											<div class="form-group">
+						<div class=offset-md-4>
+							<label for="fullname" class="col-md-4 control-label">Full Name</label>
+							<div class="col-md-10">
+								<input type="text" th:field="*{fullname}" id="fullname" placeholder="Full Name" class="col-9" required pattern="[a-z][A-Z][0-9]" title="Enter your fullname">
+								<p class="text-danger" th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}"></p>
+							</div>
+						</div>
+					</div>
+					<div class="form-group mt-4">
+						<div class="offset-md-4">
+							<label for="username" class="col-md-4 control-label">User Name</label>
+							<div class="col-md-10">
+								<input type="text" th:field="*{username}" id="username" placeholder="User Name" class="col-9" required pattern="[a-z][A-Z][0-9]" title="Enter your name">
+								<p class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+							</div>
+						</div>
+					</div>
+					<div class="form-group mt-4">
+						<div class=offset-md-4>
+							<label for="password" class="col-md-4 control-label">Password</label>
+							<div class="col-md-10">
+								<input type="password" th:field="*{password}" id="password" placeholder="Password" class="col-9" required pattern="((?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[\\$\\%\\#\\@]).{8,})" 
+								title="Password must be number, caracters, special caracters, and length 8">
+								<p class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+							</div>
+						</div>
+					</div>
+					<div class="form-group mt-4">
+						<div class=offset-md-4>
+							<label for="password" class="col-md-2 control-label">Role</label>
+							<div class="col-md-10">
+								<label class="checkbox-inline"><input type="radio" th:field="*{role}" th:value="ADMIN">Admin</label>
+								<label class="checkbox-inline"><input type="radio" th:field="*{role}" th:value="USER">User</label>
+								<p class="text-danger" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></p>
+							</div>
+						</div>
+					</div>
+						<div class="form-group">
+							<div class=offset-md-4>
+								<div class="col-md-12">
+									<input type="hidden" th:field="*{id}">
+									<a class="btn btn-danger btn-md" href="/user/list">Cancel</a>
+									<input class="btn btn-primary btn-md" type="submit" value="Update User">
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

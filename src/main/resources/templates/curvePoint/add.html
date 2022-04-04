@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+<title>Add Curve</title>
+</head>
+<body>
+<div class="container">
+  <div th:if=${messageError} class="alert alert-danger text-center" role="alert">
+  	[[${messageError}]]
+  </div>
+	<div class="row d-flex justify-content-center align-items-center" style="height: 700px">
+	   	<div class="col-md-5 mt-2" style="background-color: black; height: 700px">				
+			<div class="position-absolute top-50" style="color: white">
+				<div class="text-center col-md-6 offset-md-3 mt-5">
+					<h1>User Interface functionality</h1>
+					<div class="mt-5">
+						<h2>Curve 3.1</h2>
+					</div>
+				</div>
+	   		</div>
+	  	</div>
+	  		<div class="col-md-7" style="height: 700px">
+	    		<div class="row mt-4 offset-md-4">
+					<h2>Add New Curve</h2>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+					<form action="#" th:action="@{/curvePoint/validate}" th:object="${curvePoint}" method="post" class="form-horizontal" style="width: 100%">			
+						 <div class="form-group">
+							 <div class=offset-md-4>
+								<label for="curve" class="col-md-4 control-label">CurvePointId</label>
+								<div class="col-md-10">
+									<input type="text" th:field="*{curve}" id="curve" placeholder="curve" class="col-9" required pattern="[0-9]" title="Enter Id number">
+									<p class="text-danger" th:if="${#fields.hasErrors('curve')}" th:errors="*{curve}"></p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group mt-4">
+							<div class=offset-md-4>
+								<label for="term" class="col-md-4 control-label">Term</label>
+								<div class="col-md-10">
+									<input type="text" th:field="*{term}" id="term" placeholder="term" class="col-9" required pattern="[0-9]" title="Enter number">
+									<p class="text-danger" th:if="${#fields.hasErrors('term')}" th:errors="*{term}"></p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group mt-4">
+							<div class=offset-md-4>
+								<label for="value" class="col-md-4 control-label">Value</label>
+								<div class="col-md-10">
+									<input type="text" th:field="*{value}" id="value" placeholder="Value" class="col-9" required pattern="[0-9]" title="Enter number">
+									<p class="text-danger" th:if="${#fields.hasErrors('value')}" th:errors="*{value}"></p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class=offset-md-4>
+								<div class="col-md-10">
+									<a class="btn btn-danger btn-md" href="/curvePoint/list">Cancel</a>
+									<input class="btn btn-primary btn-md" type="submit" value="Add CurvePoint">
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>			
+		</div>
+	</div>
+</div>
+</body>
+</html>
