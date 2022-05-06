@@ -33,7 +33,7 @@
 						<div class=offset-md-4>
 							<label for="fullname" class="col-md-4 control-label">Full Name</label>
 							<div class="col-md-10">
-								<input type="text" th:field="*{fullname}" id="fullname" placeholder="Full Name" class="col-9" required pattern="[a-z][A-Z][0-9]" title="Enter your fullname">
+								<input type="text" th:field="*{fullname}" id="fullname" placeholder="Full Name" class="col-9" required title="Enter your fullname">
 								<p class="text-danger" th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}"></p>
 							</div>
 						</div>
@@ -42,7 +42,7 @@
 						<div class="offset-md-4">
 							<label for="username" class="col-md-4 control-label">User Name</label>
 							<div class="col-md-10">
-								<input type="text" th:field="*{username}" id="username" placeholder="User Name" class="col-9" required pattern="[a-z][A-Z][0-9]" title="Enter your name">
+								<input type="text" th:field="*{username}" id="username" placeholder="User Name" class="col-9" required title="Enter your name">
 								<p class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
 							</div>
 						</div>
@@ -51,8 +51,8 @@
 						<div class=offset-md-4>
 							<label for="password" class="col-md-4 control-label">Password</label>
 							<div class="col-md-10">
-								<input type="password" th:field="*{password}" id="password" placeholder="Password" class="col-9" required pattern="((?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[\\$\\%\\#\\@]).{8,})" 
-								title="Password must be number, caracters, special caracters, and length 8">
+								<input type="password" th:field="*{password}" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%]).{8,}" 
+										title="Password must be contain, caracter, number, special caracter, length 8 !" placeholder="Password" class="col-9">
 								<p class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
 							</div>
 						</div>
@@ -74,10 +74,6 @@
 								<input class="btn btn-primary btn-md" type="submit" value="Add user">
 							</div>
 						</div>
-					</div>
-					<!-- Voir pour l'image -->
-					<div class="row d-flex justify-content-end mt-5">
-						<img alt="" src="/asset/poseidon.png" height="100" width="200">
 					</div>
 				</form>
 				</div>

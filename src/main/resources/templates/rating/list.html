@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../../css/bootstrap.min.css" >
-<title>List of BidList</title>
+<title>List of Rating</title>
 </head>
 <body>
 <div class="container">
@@ -17,14 +17,14 @@
  				<div class="text-center col-md-6 offset-md-3 mt-5">
  				<h1>User Interface functionality</h1>
  				<div class="mt-5">
- 					<h2>Bid 2.2</h2>
+ 					<h2>Rating 4.2</h2>
 				</div>
  				</div>
 	    	</div>
     	</div>
     	<div class="col-md-7" style="height: 700px">
     		<div class="row mt-4 offset-md-4">
-				<h2>List of All Bid</h2>
+				<h2>List of All Rating</h2>
 			</div>
 			<div class="row">
 				<div class="col-md-12 offset-md-1" style="font-size: 10px">
@@ -43,32 +43,34 @@
 						</div>
 					</div>
 					<div class="row text-center mt-5">
-						<h4>Bid List</h4>
+						<h4>Rating List</h4>
 					</div>
 					<div class="row">
 						<div class="text-end">
-							<a href="/bidList/add" class="btn btn-primary btn-sm">Add New</a>
+							<a href="/rating/add" class="btn btn-primary btn-sm">Add New</a>
 						</div>
 						<table class="mt-3 table table-bordered text-center table-md" style="font-size: 10px">
 							<thead>
 								<tr>
 									<th>Id</th>
-									<th>Account</th>
-									<th>Type</th>
-									<th>Bid Quantity</th>
+									<th>MoodysRating</th>
+									<th>SandPRating</th>
+									<th>FitchRating</th>
+									<th>OrderNumber</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
-<!-- 							TODO: Show all Bids to the table, the Action column will have Edit & Delete buttons -->
-								<tr th:each="bidList : ${bidList}">
-									<td style="width: 10%" th:text="${bidList.id}"></td>
-									<td th:text="${bidList.account}"></td>
-									<td th:text="${bidList.type}"></td>
-									<td th:text="${bidList.bidQuantity}"></td>
+<!-- 							TODO: Show all rating to the table, the Action column will have Edit & Delete buttons -->
+								<tr th:each="rating : ${ratingList}">
+									<td style="width: 10%" th:text="${rating.id}"></td>
+									<td th:text="${rating.moodysRating}"></td>
+									<td th:text="${rating.sandPRating}"></td>
+									<td th:text="${rating.fitchRating}"></td>
+									<td th:text="${rating.orderNumber}"></td>
 									<td style="width: 15%" class="text-center">
-										<a th:href="@{/bidList/update/{id}(id=${bidList.id})}">Edit</a>&nbsp;|&nbsp;
-										<a th:href="@{/bidList/delete/{id}(id=${bidList.id})}">Delete</a>
+										<a th:href="@{/rating/update/{id}(id=${rating.id})}">Edit</a>&nbsp;|&nbsp;
+										<a th:href="@{/rating/delete/{id}(id=${rating.id})}">Delete</a>
 									</td>
 								</tr>
 							</tbody>

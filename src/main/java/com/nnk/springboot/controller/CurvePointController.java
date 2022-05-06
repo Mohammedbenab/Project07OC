@@ -55,9 +55,6 @@ public class CurvePointController {
 	    @PostMapping("/curvePoint/validate")
 	    public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model, RedirectAttributes redirect){
 	        // TODO: check data valid and save to db, after saving return Curve list
-	    	System.out.println("cuvepointId : "+curvePoint.getCurve());
-	    	System.out.println("cuvepoint terme : "+curvePoint.getTerm());
-	    	System.out.println("cuvepoint value : "+curvePoint.getValue());
 	    	if(!result.hasErrors()) {
 				try {
 					curvePointService.saveCurvePoint(curvePoint);

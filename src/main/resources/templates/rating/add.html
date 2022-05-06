@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+<title>Add rating</title>
+</head>
+<body>
+<div class="container">
+  <div th:if=${messageError} class="alert alert-danger text-center" role="alert">
+  	[[${messageError}]]
+  </div>
+	<div class="row d-flex justify-content-center align-items-center" style="height: 700px">
+	   	<div class="col-md-5 mt-2" style="background-color: black; height: 700px">				
+			<div class="position-absolute top-50" style="color: white">
+				<div class="text-center col-md-6 offset-md-3 mt-5">
+					<h1>User Interface functionality</h1>
+					<div class="mt-5">
+						<h2>Rating 4.1</h2>
+					</div>
+				</div>
+	   		</div>
+	  	</div>
+	  		<div class="col-md-7" style="height: 700px">
+	    		<div class="row mt-4 offset-md-4">
+					<h2>Add New Rating</h2>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+					<form action="#" th:action="@{/rating/validate}" th:object="${rating}" method="post" class="form-horizontal" style="width: 100%">			
+						 <div class="form-group">
+							 <div class=offset-md-4>
+								<label for="moodysRating" class="col-md-4 control-label">MoodysRating</label>
+								<div class="col-md-10">
+									<input type="text" th:field="*{moodysRating}" id="moodysRating" placeholder="moodysRating" class="col-9" title="Enter moodysRating">
+									<p class="text-danger" th:if="${#fields.hasErrors('moodysRating')}" th:errors="*{moodysRating}"></p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group mt-4">
+							<div class=offset-md-4>
+								<label for="sandPRating" class="col-md-4 control-label">SandPRating</label>
+								<div class="col-md-10">
+									<input type="text" th:field="*{sandPRating}" id="sandPRating" placeholder="sandPRating" class="col-9" title="Enter sandPRating">
+									<p class="text-danger" th:if="${#fields.hasErrors('sandPRating')}" th:errors="*{sandPRating}"></p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group mt-4">
+							<div class=offset-md-4>
+								<label for="fitchRating" class="col-md-4 control-label">FitchRating</label>
+								<div class="col-md-10">
+									<input type="text" th:field="*{fitchRating}" id="fitchRating" placeholder="fitchRating" class="col-9" required title="Enter fitchRating">
+									<p class="text-danger" th:if="${#fields.hasErrors('fitchRating')}" th:errors="*{fitchRating}"></p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group mt-4">
+							<div class=offset-md-4>
+								<label for="orderNumber" class="col-md-4 control-label">OrderNumber</label>
+								<div class="col-md-10">
+									<input type="text" th:field="*{orderNumber}" id="orderNumber" placeholder="orderNumber" class="col-9" required title="Enter orderNumber">
+									<p class="text-danger" th:if="${#fields.hasErrors('orderNumber')}" th:errors="*{orderNumber}"></p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class=offset-md-4>
+								<div class="col-md-10">
+									<a class="btn btn-danger btn-md" href="/rating/list">Cancel</a>
+									<input class="btn btn-primary btn-md" type="submit" value="Add Rating">
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>		
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

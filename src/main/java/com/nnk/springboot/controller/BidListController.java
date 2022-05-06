@@ -83,7 +83,7 @@ public class BidListController {
                              BindingResult result, Model model, RedirectAttributes redirect) {
         // TODO: check required fields, if valid call service to update Bid and return list Bid
     	if (result.hasErrors()) {
-            return "user/update";
+            return "bidList/update";
         }
     	try {
 			bidListService.updateBidList(bidList);

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+<title>Update rule</title>
+</head>
+<body>
+<div class="container">
+  <div th:if=${messageError} class="alert alert-danger text-center" role="alert">
+  	[[${messageError}]]
+  </div>
+	<div class="row d-flex justify-content-center align-items-center" style="height: 700px">
+	   	<div class="col-md-5 mt-2" style="background-color: black; height: 700px">				
+			<div class="position-absolute top-50" style="color: white">
+				<div class="text-center col-md-6 offset-md-3 mt-5">
+					<h1>User Interface functionality</h1>
+					<div class="mt-5">
+						<h2>Rule 6.3</h2>
+					</div>
+				</div>
+	   		</div>
+	  	</div>
+	  		<div class="col-md-7" style="height: 700px">
+	    		<div class="row mt-4 offset-md-4">
+					<h2>Update Rule</h2>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+					<form action="#" th:action="@{/rule/update/{id}(id=${rule.id})}" th:object="${rule}" method="post" class="form-horizontal" style="width: 100%">			
+						 <div class="form-group">
+							 <div class=offset-md-4>
+								<label for="name" class="col-md-4 control-label">Name</label>
+								<div class="col-md-10">
+									<input type="text" th:field="*{name}" id="name" placeholder="name" class="col-9" title="Enter name">
+									<p class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group mt-4">
+							<div class=offset-md-4>
+								<label for="description" class="col-md-4 control-label">Description</label>
+								<div class="col-md-10">
+									<input type="text" th:field="*{description}" id="description" placeholder="description" class="col-9" title="Enter description">
+									<p class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group mt-4">
+							<div class=offset-md-4>
+								<label for="json" class="col-md-4 control-label">Json</label>
+								<div class="col-md-10">
+									<input type="text" th:field="*{json}" id="json" placeholder="json" class="col-9" required title="Enter json">
+									<p class="text-danger" th:if="${#fields.hasErrors('json')}" th:errors="*{json}"></p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group mt-4">
+							<div class=offset-md-4>
+								<label for="template" class="col-md-4 control-label">template</label>
+								<div class="col-md-10">
+									<input type="text" th:field="*{template}" id="template" placeholder="template" class="col-9" required title="Enter template">
+									<p class="text-danger" th:if="${#fields.hasErrors('template')}" th:errors="*{template}"></p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group mt-4">
+							<div class=offset-md-4>
+								<label for="sqlStr" class="col-md-4 control-label">SqlStr</label>
+								<div class="col-md-10">
+									<input type="text" th:field="*{sqlStr}" id="sqlStr" placeholder="sqlStr" class="col-9" required title="Enter sqlStr">
+									<p class="text-danger" th:if="${#fields.hasErrors('sqlStr')}" th:errors="*{sqlStr}"></p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group mt-4">
+							<div class=offset-md-4>
+								<label for="sqlPart" class="col-md-4 control-label">SqlPart</label>
+								<div class="col-md-10">
+									<input type="text" th:field="*{sqlPart}" id="sqlPart" placeholder="sqlPart" class="col-9" required title="Enter sqlPart">
+									<p class="text-danger" th:if="${#fields.hasErrors('sqlPart')}" th:errors="*{sqlPart}"></p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class=offset-md-4>
+								<div class="col-md-10">
+									<a class="btn btn-danger btn-md" href="/rule/list">Cancel</a>
+									<input class="btn btn-primary btn-md" type="submit" value="Update Rule">
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>		
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

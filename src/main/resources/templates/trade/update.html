@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../../css/bootstrap.min.css" >
-<title>Add bidList</title>
+<title>Update trade</title>
 </head>
 <body>
 <div class="container">
@@ -17,23 +17,23 @@
 				<div class="text-center col-md-6 offset-md-3 mt-5">
 					<h1>User Interface functionality</h1>
 					<div class="mt-5">
-						<h2>Bid 2.1</h2>
+						<h2>Trade 5.3</h2>
 					</div>
 				</div>
 	   		</div>
 	  	</div>
 	  		<div class="col-md-7" style="height: 700px">
 	    		<div class="row mt-4 offset-md-4">
-					<h2>Add New Bid</h2>
+					<h2>Update Trade</h2>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-					<form action="#" th:action="@{/bidList/validate}" th:object="${bidList}" method="post" class="form-horizontal" style="width: 100%">			
+					<form action="#" th:action="@{/trade/update/{id}(id=${trade.id})}" th:object="${trade}" method="post" class="form-horizontal" style="width: 100%">			
 						 <div class="form-group">
 							 <div class=offset-md-4>
 								<label for="account" class="col-md-4 control-label">Account</label>
 								<div class="col-md-10">
-									<input type="text" th:field="*{account}" id="account" placeholder="account" class="col-9" pattern="[0-9]{10}" title="Enter 10 numbers for account">
+									<input type="text" th:field="*{account}" id="account" placeholder="account" class="col-9" title="Enter account">
 									<p class="text-danger" th:if="${#fields.hasErrors('account')}" th:errors="*{account}"></p>
 								</div>
 							</div>
@@ -42,25 +42,25 @@
 							<div class=offset-md-4>
 								<label for="type" class="col-md-4 control-label">Type</label>
 								<div class="col-md-10">
-									<input type="text" th:field="*{type}" id="type" placeholder="type" class="col-9" title="Enter caracters">
+									<input type="text" th:field="*{type}" id="type" placeholder="type" class="col-9" title="Enter type">
 									<p class="text-danger" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></p>
 								</div>
 							</div>
 						</div>
 						<div class="form-group mt-4">
 							<div class=offset-md-4>
-								<label for="bidQuantity" class="col-md-4 control-label">BidQuantity</label>
+								<label for="buyQuantity" class="col-md-4 control-label">BuyQuantity</label>
 								<div class="col-md-10">
-									<input type="text" th:field="*{bidQuantity}" id="bidQuantity" placeholder="bidQuantity" class="col-9" required pattern="[0-9]" title="Enter number">
-									<p class="text-danger" th:if="${#fields.hasErrors('bidQuantity')}" th:errors="*{bidQuantity}"></p>
+									<input type="text" th:field="*{buyQuantity}" id="buyQuantity" placeholder="buyQuantity" class="col-9" required title="Enter buyQuantity">
+									<p class="text-danger" th:if="${#fields.hasErrors('buyQuantity')}" th:errors="*{buyQuantity}"></p>
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class=offset-md-4>
 								<div class="col-md-10">
-									<a class="btn btn-danger btn-md" href="/bidList/list">Cancel</a>
-									<input class="btn btn-primary btn-md" type="submit" value="Add Bid">
+									<a class="btn btn-danger btn-md" href="/trade/list">Cancel</a>
+									<input class="btn btn-primary btn-md" type="submit" value="Update Trade">
 								</div>
 							</div>
 						</div>

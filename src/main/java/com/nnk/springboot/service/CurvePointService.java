@@ -25,7 +25,6 @@ public class CurvePointService {
 	 * @throws CurvePointNotFoundException
 	 */
 	public CurvePoint saveCurvePoint(CurvePoint curvePoint) throws CurvePointNotFoundException {
-//		CurvePoint curveDb = curvePointRepository.getById(curvePoint.getId());
 		Integer curveDb = curvePoint.getId();
 		if(curveDb == null) {
 			CurvePoint curveNew = new CurvePoint();
