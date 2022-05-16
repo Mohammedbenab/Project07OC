@@ -21,18 +21,12 @@ public class BidListService {
 	/**
 	 * 
 	 * @param bidList
-	 * @return
+	 * @return new BidList
 	 * @throws BidNotFoundException
 	 */
 	public BidList saveBidList(BidList bidList) throws BidNotFoundException {
-//		BidList bidlist1 = bidListRepository.findByAccount(bidList.getAccount());
-		if(bidList.getId() == null) {
-			
-//		if(bidlist1 == null) {
-//			BidList bidListNew = new BidList();
-//			bidListNew.setAccount(bidList.getAccount());
-//			bidListNew.setBidQuantity(bidList.getBidQuantity());
-//			bidListNew.setType(bidList.getType());
+		BidList bidlist1 = bidListRepository.findByAccount(bidList.getAccount());
+		if(bidlist1 == null) {
 			bidListRepository.save(bidList);
 			logger.info("BidList saved successfully");
 			return bidList;
@@ -62,7 +56,7 @@ public class BidListService {
 	/**
 	 * 
 	 * @param bidList
-	 * @return
+	 * @return Update BidList
 	 * @throws BidNotFoundException
 	 */
 	public BidList updateBidList(BidList bidList) throws BidNotFoundException {
@@ -83,7 +77,7 @@ public class BidListService {
 	/**
 	 * 
 	 * @param id
-	 * @return
+	 * @return BidList
 	 */
 	public BidList getbidListById(Integer id) {
 		return bidListRepository.findById(id).orElse(null);
@@ -91,7 +85,7 @@ public class BidListService {
 	
 	/**
 	 * 
-	 * @return
+	 * @return List of BidList
 	 */
 	public List<BidList> getAllBidList(){
 		return bidListRepository.findAll();
@@ -100,7 +94,7 @@ public class BidListService {
 	/**
 	 * 
 	 * @param account
-	 * @return
+	 * @return BidList
 	 */
 	public BidList getBidListByAccount(String account) {
 		return bidListRepository.findByAccount(account);

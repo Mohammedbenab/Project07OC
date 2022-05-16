@@ -18,9 +18,15 @@ public class RuleService {
 	@Autowired
 	private RuleRepository ruleRepository;
 	
-	//add
+	/**
+	 * 
+	 * @param rule
+	 * @return new Rule 
+	 * @throws Exception
+	 */
 	public Rule add(Rule rule) throws Exception {
-		if(rule.getId() == null) {
+		Rule rule1 = ruleRepository.findById(rule.getId()).orElse(null);
+		if(rule1 == null) {
 			logger.info("Rule saved successfully");
 			return ruleRepository.save(rule);
 		}else {
@@ -30,17 +36,23 @@ public class RuleService {
 		
 	}
 	
-	//update
+	/**
+	 * 
+	 * @param rule
+	 * @return Rule updated
+	 * @throws Exception
+	 */
 	public Rule update(Rule rule) throws Exception {
-		if(rule.getId() != null) {
-			rule.setDescription(rule.getDescription());
-			rule.setJson(rule.getJson());
-			rule.setName(rule.getName());
-			rule.setSqlPart(rule.getSqlPart());
-			rule.setSqlStr(rule.getSqlStr());
-			rule.setTemplate(rule.getTemplate());
+		Rule ruleDB = ruleRepository.findById(rule.getId()).orElse(null);
+		if(ruleDB != null) {
+			ruleDB.setDescription(rule.getDescription());
+			ruleDB.setJson(rule.getJson());
+			ruleDB.setName(rule.getName());
+			ruleDB.setSqlPart(rule.getSqlPart());
+			ruleDB.setSqlStr(rule.getSqlStr());
+			ruleDB.setTemplate(rule.getTemplate());
 			logger.info("Rule update successfully");
-			return ruleRepository.save(rule);
+			return ruleRepository.save(ruleDB);
 		}else {
 			logger.error("Rule not updated");
 			throw new Exception();
@@ -48,7 +60,11 @@ public class RuleService {
 		
 	}
 	
-	//delete
+	/**
+	 * 
+	 * @param rule
+	 * @throws Exception
+	 */
 	public void delete(Rule rule) throws Exception {
 		if(rule.getId() != null) {
 			ruleRepository.delete(rule);
@@ -60,14 +76,22 @@ public class RuleService {
 		
 	}
 	
-	//list
+	/**
+	 * 
+	 * @return list of rules
+	 */
 	public List<Rule> getList() {
 		return ruleRepository.findAll();
 		
 		
 	}
 	
-	//getById
+	/**
+	 * 
+	 * @param id
+	 * @return rule
+	 * @throws Exception
+	 */
 	public Rule getById(Integer id) throws Exception {
 		Rule rule = ruleRepository.findById(id).orElse(null);
 		if(rule != null) {

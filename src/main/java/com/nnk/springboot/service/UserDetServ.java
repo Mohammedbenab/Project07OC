@@ -27,24 +27,5 @@ public class UserDetServ implements UserDetailsService{
 				user.getPassword(),
 				Collections.singletonList(new SimpleGrantedAuthority(user.getRole()))
 				);
-//		 Customer myUser = customerService.getCustomerByName(username);
-//		 System.out.println(myUser.getName());
-//	        UserDetails user = org.springframework.security.core.userdetails.User.withUsername(myUser.getName())
-//	                .password(myUser.getPassword())
-//	                .authorities(getAuthorities(myUser)).build();
-//
-//	        return user;
-
-	    }
-
-//	    private Collection<GrantedAuthority> getAuthorities(Customer myUser) {
-//	        Collection<GrantedAuthority> authorities = new ArrayList<>(2);
-//	        if (myUser.getRole().equals("ADMIN")) {
-//	            authorities.add(new SimpleGrantedAuthority("ADMIN"));
-//	        } else if (myUser.getRole().equals("USER")) {
-//	            authorities.add(new SimpleGrantedAuthority("USER"));
-//	        }
-//	        return authorities;
-//	    }
-
+	}
 }

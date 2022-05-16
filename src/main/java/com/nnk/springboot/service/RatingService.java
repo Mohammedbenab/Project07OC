@@ -18,7 +18,12 @@ public class RatingService {
 	@Autowired
 	private RatingRepository ratingRepository;
 	
-	//add
+	/**
+	 * 
+	 * @param rating
+	 * @return Rating created
+	 * @throws Exception
+	 */
 	public Rating add(Rating rating) throws Exception {
 		if(rating.getId() == null) {
 			logger.info("Rating saved successfully");
@@ -29,16 +34,21 @@ public class RatingService {
 		}
 	}
 	
-	//update
+	/**
+	 * 
+	 * @param rating
+	 * @return Rating updated
+	 * @throws Exception
+	 */
 	public Rating update(Rating rating) throws Exception {
-		if(rating.getId() != null) {
-//			Rating update = new Rating();
-			rating.setFitchRating(rating.getFitchRating());
-			rating.setMoodysRating(rating.getMoodysRating());
-			rating.setOrderNumber(rating.getOrderNumber());
-			rating.setSandPRating(rating.getSandPRating());
+		Rating ratingDB = ratingRepository.findById(rating.getId()).orElse(null);
+		if(ratingDB.getId() != null) {
+			ratingDB.setFitchRating(rating.getFitchRating());
+			ratingDB.setMoodysRating(rating.getMoodysRating());
+			ratingDB.setOrderNumber(rating.getOrderNumber());
+			ratingDB.setSandPRating(rating.getSandPRating());
 			logger.info("Rating update successfully");
-			return ratingRepository.save(rating);
+			return ratingRepository.save(ratingDB);
 		}else {
 			logger.error("Rating not update");
 			throw new Exception();
@@ -46,13 +56,19 @@ public class RatingService {
 		
 	}
 	
-	//delete
+	/**
+	 * 
+	 * @param rating
+	 */
 	public void delete(Rating rating) {
 		ratingRepository.delete(rating);
 		logger.info("Rating delete successfully");
 	}
 	
-	//list
+	/**
+	 * 
+	 * @return List of Rating
+	 */
 	public List<Rating> getList() {
 		List<Rating> list = ratingRepository.findAll();
 		return list;
@@ -60,7 +76,12 @@ public class RatingService {
 		
 	}
 	
-	//getById
+	/**
+	 * 
+	 * @param id
+	 * @return Rating
+	 * @throws Exception
+	 */
 	public Rating getById(Integer id) throws Exception {
 		Rating verify = ratingRepository.findById(id).orElse(null);
 		if(verify != null) {

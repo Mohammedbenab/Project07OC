@@ -21,19 +21,15 @@ public class CurvePointService {
 	/**
 	 * 
 	 * @param curvePoint
-	 * @return
+	 * @return CurvePoint created
 	 * @throws CurvePointNotFoundException
 	 */
 	public CurvePoint saveCurvePoint(CurvePoint curvePoint) throws CurvePointNotFoundException {
 		Integer curveDb = curvePoint.getId();
 		if(curveDb == null) {
-			CurvePoint curveNew = new CurvePoint();
-			curveNew.setCurve(curvePoint.getCurve());
-			curveNew.setTerm(curvePoint.getTerm());
-			curveNew.setValue(curvePoint.getValue());
-			curvePointRepository.save(curveNew);
+			curvePointRepository.save(curvePoint);
 			logger.info("CurvePoint saved");
-			return curveNew;
+			return curvePoint;
 		}else {
 			logger.error("CurvePoint not be saved");
 			throw new CurvePointNotFoundException("CurvePoint not saved");	
@@ -59,12 +55,12 @@ public class CurvePointService {
 	/**
 	 * 
 	 * @param curvePoint
-	 * @return
+	 * @return CurvePoint Updated
 	 * @throws CurvePointNotFoundException
 	 */
 	public CurvePoint updateCurvePoint(CurvePoint curvePoint) throws CurvePointNotFoundException {
-//		CurvePoint curve = curvePointRepository.findById(curvePoint.getId()).orElse(null);
-		if(curvePoint.getId() != null) {
+		CurvePoint curve = curvePointRepository.findById(curvePoint.getId()).orElse(null);
+		if(curve != null) {
 			curvePoint.setCurve(curvePoint.getCurve());
 			curvePoint.setTerm(curvePoint.getTerm());
 			curvePoint.setValue(curvePoint.getValue());
@@ -81,15 +77,16 @@ public class CurvePointService {
 	/**
 	 * 
 	 * @param id
-	 * @return
+	 * @return CurvePoint
 	 */
 	public CurvePoint getCurvePointById(Integer id) {
-		return curvePointRepository.getById(id);
+		CurvePoint curve = curvePointRepository.findById(id).orElse(null);
+		return curve;
 	}
 	
 	/**
 	 * 
-	 * @return
+	 * @return List of CurvePoint
 	 */
 	public List<CurvePoint> getAllCurvePoint(){
 		return curvePointRepository.findAll();

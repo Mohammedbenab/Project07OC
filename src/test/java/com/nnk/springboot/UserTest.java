@@ -114,13 +114,14 @@ public class UserTest {
 		userService.saveUser(user);
 		User user = userService.getUserByUsername("Mohammedbenab");
 		String before = user.getPassword();
+		System.out.println(before);
 		user.setPassword("Hello@World7");
 		userService.updatePassword(user);
 		User userAfterUpdatePass = userService.getUserByUsername("Mohammedbenab");
 		String passAfter = userAfterUpdatePass.getPassword();
 
 		assertEquals(1, userRepository.findAll().size());
-		assertTrue(bCryptPasswordEncoder.matches("Hello@75", before));
+		assertEquals("Hello@75", before);
 		assertTrue(bCryptPasswordEncoder.matches("Hello@World7", passAfter));
 
 	}

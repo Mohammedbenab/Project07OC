@@ -37,7 +37,7 @@ public class UserService {
 	/**
 	 * 
 	 * @param user
-	 * @return
+	 * @return new User 
 	 * @throws UserNotFoundException
 	 * @throws InvalidPasswordException
 	 */
@@ -45,14 +45,9 @@ public class UserService {
 		User user1 = userRepository.findByUsername(user.getUsername());
 		if (user1 == null ) {
 			if(passwordMatch(user.getPassword())){
-			User userNew = new User();
-			userNew.setUsername(user.getUsername());
-			userNew.setFullname(user.getFullname());
-			userNew.setRole(user.getRole());
-			userNew.setPassword(bcyptPasswordEncoder().encode(user.getPassword()));
-			userRepository.save(userNew);
-			logger.info("User "+ userNew.getUsername() +" saved successfully");
-			return userNew;
+			userRepository.save(user);
+			logger.info("User "+ user.getUsername() +" saved successfully");
+			return user;
 			}else {
 				throw new InvalidPasswordException("Password not conform to security rules");
 			}
@@ -81,7 +76,7 @@ public class UserService {
 	/**
 	 * 
 	 * @param user
-	 * @return
+	 * @return User update
 	 * @throws UserNotFoundException
 	 */
 	public User updateUser(User user) throws UserNotFoundException {
@@ -102,7 +97,7 @@ public class UserService {
 	/**
 	 * 
 	 * @param user
-	 * @return
+	 * @return User by password updated
 	 * @throws InvalidPasswordException
 	 */
 	public User updatePassword(User user) throws InvalidPasswordException {
@@ -121,10 +116,17 @@ public class UserService {
 	/**
 	 * 
 	 * @param id
-	 * @return
+	 * @return User if exist in BDD
+	 * @throws UserNotFoundException 
+	 * @throws Exception 
 	 */
-	public User getUserById(Integer id) {
-		return userRepository.findById(id).get();
+	public User getUserById(Integer id) throws UserNotFoundException{
+		User user = userRepository.findById(id).orElse(null);
+		if(user != null) {
+			return user;
+		}else {
+			throw new UserNotFoundException("User not found !");
+		}
 		 
 	}
 	
@@ -139,7 +141,7 @@ public class UserService {
 	/**
 	 * 
 	 * @param username
-	 * @return
+	 * @return User if name exist 
 	 */
 	public User getUserByUsername(String username) {
 		return userRepository.getByUsername(username);
@@ -148,7 +150,7 @@ public class UserService {
 	/**
 	 * 
 	 * @param password
-	 * @return
+	 * @return true or false for verify if password match with regex
 	 */
 	public boolean passwordMatch(String password) {
 		pattern = Pattern.compile(Password_Regex);

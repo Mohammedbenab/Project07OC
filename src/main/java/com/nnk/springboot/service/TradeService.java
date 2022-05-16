@@ -18,7 +18,12 @@ public class TradeService {
 	@Autowired
 	private TradeRepository tradeRepository;
 	
-	//add
+	/**
+	 * 
+	 * @param trade
+	 * @return new Trade
+	 * @throws Exception
+	 */
 	public Trade add(Trade trade) throws Exception {
 		if(trade.getId() == null) {
 			logger.info("Trade saved successfully");
@@ -29,24 +34,32 @@ public class TradeService {
 		}
 	}
 	
-	//update
+	/**
+	 * 
+	 * @param trade
+	 * @return Trade updated
+	 * @throws Exception
+	 */
 	public Trade update(Trade trade) throws Exception {
-//		System.out.println("Trade id dans class service : "+trade.getId());
-//		Trade tradeDb = tradeRepository.findById(trade.getId()).orElse(null);
-		if(trade.getId() != null) {
-			trade.setAccount(trade.getAccount());
-			trade.setBuyQuantity(trade.getBuyQuantity());
-			trade.setType(trade.getType());
-			tradeRepository.save(trade);
+		Trade tradeDb = tradeRepository.findById(trade.getId()).orElse(null);
+		if(tradeDb != null) {
+			tradeDb.setAccount(trade.getAccount());
+			tradeDb.setBuyQuantity(trade.getBuyQuantity());
+			tradeDb.setType(trade.getType());
+			tradeRepository.save(tradeDb);
 			logger.info("Rule update successfully");
-			return trade;
+			return tradeDb;
 		}else {
 			logger.error("Trade not updated");
 			throw new Exception();
 		}		
 	}
 	
-	//delete
+	/**
+	 * 
+	 * @param trade
+	 * @throws Exception
+	 */
 	public void delete(Trade trade) throws Exception {
 		if(trade.getId() != null) {
 			tradeRepository.delete(trade);
@@ -58,19 +71,29 @@ public class TradeService {
 		
 	}
 	
-	//list
+	/**
+	 * 
+	 * @return List of Trade
+	 */
 	public List<Trade> getList() {
 		return tradeRepository.findAll();
 		
 		
 	}
 	
-	//getById
+	/**
+	 * 
+	 * @param id
+	 * @return Trade find by id if exist
+	 * @throws Exception
+	 */
 	public Trade getById(Integer id) throws Exception {
-		Trade trade = tradeRepository.findById(id).get();
-		System.out.println("getbyid : "+trade.getId());
-		return tradeRepository.findById(id).get();
-		
+		Trade trade = tradeRepository.findById(id).orElse(null);
+		if (trade != null) {
+			return trade;
+		}else {
+			throw new Exception();
+		}		
 	}
 
 }
