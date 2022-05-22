@@ -33,7 +33,7 @@
 							 <div class=offset-md-4>
 								<label for="name" class="col-md-4 control-label">Name</label>
 								<div class="col-md-10">
-									<input type="text" th:field="*{name}" id="name" placeholder="name" class="col-9" title="Enter name">
+									<input type="text" th:field="*{name}" id="name" placeholder="name" class="col-9" required title="Enter name">
 									<p class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
 								</div>
 							</div>
@@ -42,7 +42,7 @@
 							<div class=offset-md-4>
 								<label for="description" class="col-md-4 control-label">Description</label>
 								<div class="col-md-10">
-									<input type="text" th:field="*{description}" id="description" placeholder="description" class="col-9" title="Enter description">
+									<input type="text" th:field="*{description}" id="description" placeholder="description" class="col-9" required title="Enter description">
 									<p class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
 								</div>
 							</div>

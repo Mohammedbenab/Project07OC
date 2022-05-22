@@ -55,7 +55,7 @@ public class TradeServiceUnitTest {
 	
 	@Test
 	void getById() throws Exception {
-		Mockito.when(tradeRepository.save(ArgumentMatchers.any(Trade.class))).thenReturn(trade);
+		Mockito.when(tradeRepository.findById(1)).thenReturn(java.util.Optional.of(trade));
 		tradeService.getById(1);
         verify(tradeRepository, Mockito.times(1)).findById(1);
 	}

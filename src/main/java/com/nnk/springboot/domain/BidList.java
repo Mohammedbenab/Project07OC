@@ -27,8 +27,8 @@ public class BidList {
 	public BidList() {
 		super();
 	}
-
-	public BidList(@NotBlank(message = "Account is mandatory") String account,
+ 
+	public BidList(@NotBlank(message = "Account is mandatory")String account,
 			@NotBlank(message = "Type is mandatory") String type,
 			@NotNull(message = "Numbers has to be present") Double bidQuantity) {
 		super();
