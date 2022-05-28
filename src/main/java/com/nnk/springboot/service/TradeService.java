@@ -19,10 +19,10 @@ public class TradeService {
 	private TradeRepository tradeRepository;
 	
 	/**
-	 * 
-	 * @param trade
-	 * @return new Trade
-	 * @throws Exception
+	 * This method allows adding a new trade if not exist in the data base
+	 * @param trade is the object who to will be saved
+	 * @return Trade added in the data base
+	 * @throws Exception if the object Trade exist in the data base
 	 */
 	public Trade add(Trade trade) throws Exception {
 		if(trade.getId() == null) {
@@ -35,10 +35,10 @@ public class TradeService {
 	}
 	
 	/**
-	 * 
-	 * @param trade
-	 * @return Trade updated
-	 * @throws Exception
+	 * This method allows to update object if exist
+	 * @param trade is the object who to will be updated
+	 * @return Trade updated 
+	 * @throws Exception if the object Trade exist in the data base
 	 */
 	public Trade update(Trade trade) throws Exception {
 		Trade tradeDb = tradeRepository.findById(trade.getId()).orElse(null);
@@ -56,9 +56,9 @@ public class TradeService {
 	}
 	
 	/**
-	 * 
-	 * @param trade
-	 * @throws Exception
+	 * This method allows to delete trade if exist in the data base
+	 * @param trade who will be deleted
+	 * @throws Exception if the object Trade exist in the data base
 	 */
 	public void delete(Trade trade) throws Exception {
 		if(trade.getId() != null) {
@@ -72,7 +72,7 @@ public class TradeService {
 	}
 	
 	/**
-	 * 
+	 * This method allows to fetch all trades saved in the data base
 	 * @return List of Trade
 	 */
 	public List<Trade> getList() {
@@ -82,10 +82,10 @@ public class TradeService {
 	}
 	
 	/**
-	 * 
-	 * @param id
-	 * @return Trade find by id if exist
-	 * @throws Exception
+	 * this method allows to fetch trade by reference id if it exist in the data base
+	 * @param id use to fetch trade saved in the data base
+	 * @return Trade found by id if exist
+	 * @throws Exception if the object Trade exist in the data base
 	 */
 	public Trade getById(Integer id) throws Exception {
 		Trade trade = tradeRepository.findById(id).orElse(null);

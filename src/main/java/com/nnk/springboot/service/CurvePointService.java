@@ -19,10 +19,10 @@ public class CurvePointService {
 	private CurvePointRepository curvePointRepository;
 	
 	/**
-	 * 
-	 * @param curvePoint
-	 * @return CurvePoint created
-	 * @throws CurvePointNotFoundException
+	 * This method allows adding a new curvePoint if not exist in the data base
+	 * @param curvePoint is the object who to will be saved
+	 * @return curvePoint added in the data base
+	 * @throws CurvePointNotFoundException is called when curvePoint not found
 	 */
 	public CurvePoint saveCurvePoint(CurvePoint curvePoint) throws CurvePointNotFoundException {
 		Integer curveDb = curvePoint.getId();
@@ -37,9 +37,9 @@ public class CurvePointService {
 	}
 	
 	/**
-	 * 
-	 * @param curvePoint
-	 * @throws CurvePointNotFoundException
+	 * This method allows to delete curvPoint if exist in the data base
+	 * @param curvPoint who will be deleted
+	 * @throws CurvePointNotFoundException is called when curvePoint not found
 	 */
 	public void deleteCurvePoint(CurvePoint curvePoint) throws CurvePointNotFoundException{
 		CurvePoint curveExiste = curvePointRepository.findById(curvePoint.getId()).orElse(null);
@@ -53,10 +53,10 @@ public class CurvePointService {
 	}
 	
 	/**
-	 * 
-	 * @param curvePoint
-	 * @return CurvePoint Updated
-	 * @throws CurvePointNotFoundException
+	 * This method allows to update object if exist
+	 * @param curvePoint is the object who to will be updated
+	 * @return curvePoint updated 
+	 * @throws CurvePointNotFoundException is called when curvePoint not found
 	 */
 	public CurvePoint updateCurvePoint(CurvePoint curvePoint) throws CurvePointNotFoundException {
 		CurvePoint curve = curvePointRepository.findById(curvePoint.getId()).orElse(null);
@@ -75,9 +75,9 @@ public class CurvePointService {
 			
 
 	/**
-	 * 
-	 * @param id
-	 * @return CurvePoint
+	  * this method allows to fetch CurvePoint by reference id if it exist in the data base
+	 * @param id use to fetch CurvePoint saved in the data base
+	 * @return CurvePoint found by id if exist
 	 */
 	public CurvePoint getCurvePointById(Integer id) {
 		CurvePoint curve = curvePointRepository.findById(id).orElse(null);
@@ -85,7 +85,7 @@ public class CurvePointService {
 	}
 	
 	/**
-	 * 
+	  * This method allows to fetch all CurvePoint saved in the data base
 	 * @return List of CurvePoint
 	 */
 	public List<CurvePoint> getAllCurvePoint(){

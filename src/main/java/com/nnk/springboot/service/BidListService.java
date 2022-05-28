@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.exception.BidNotFoundException;
+import com.nnk.springboot.exception.CurvePointNotFoundException;
 import com.nnk.springboot.repository.BidListRepository;
 
 @Service
@@ -19,10 +20,10 @@ public class BidListService {
 	private BidListRepository bidListRepository;
 	
 	/**
-	 * 
-	 * @param bidList
-	 * @return new BidList
-	 * @throws BidNotFoundException
+	  * This method allows adding a new BidList if not exist in the data base
+	 * @param BidList is the object who to will be saved
+	 * @return BidList added in the data base
+	 * @throws BidNotFoundException is called when BidList not found
 	 */
 	public BidList saveBidList(BidList bidList) throws BidNotFoundException {
 		BidList bidlist1 = bidListRepository.findByAccount(bidList.getAccount());
@@ -38,9 +39,9 @@ public class BidListService {
 		
 	
 	/**
-	 * 
-	 * @param bidList
-	 * @throws BidNotFoundException
+	 * This method allows to delete BidList if exist in the data base
+	 * @param BidList who will be deleted
+	 * @throws BidNotFoundException is called when curvePoint not found
 	 */
 	public void deleteBidList(BidList bidList) throws BidNotFoundException {
 		BidList bidList1 = bidListRepository.findById(bidList.getId()).orElse(null);
@@ -54,10 +55,10 @@ public class BidListService {
 	}
 	
 	/**
-	 * 
-	 * @param bidList
-	 * @return Update BidList
-	 * @throws BidNotFoundException
+	 * This method allows to update object if exist
+	 * @param BidList is the object who to will be updated
+	 * @return BidList updated 
+	 * @throws BidNotFoundException is called when curvePoint not found
 	 */
 	public BidList updateBidList(BidList bidList) throws BidNotFoundException {
 		BidList bidList1 = bidListRepository.findById(bidList.getId()).orElse(null);
@@ -75,16 +76,16 @@ public class BidListService {
 	}
 
 	/**
-	 * 
-	 * @param id
-	 * @return BidList
+	 *This method allows to fetch BidList by reference id if it exist in the data base
+	 * @param id use to fetch BidList saved in the data base
+	 * @return BidList found by id if exist
 	 */
 	public BidList getbidListById(Integer id) {
 		return bidListRepository.findById(id).orElse(null);
 	}
 	
 	/**
-	 * 
+	  * This method allows to fetch all BidList saved in the data base
 	 * @return List of BidList
 	 */
 	public List<BidList> getAllBidList(){
@@ -92,9 +93,9 @@ public class BidListService {
 	}
 	
 	/**
-	 * 
-	 * @param account
-	 * @return BidList
+	  * This method allows to fetch BidList saved by account
+	  * @param account allows to found the object
+	 * @return BidList found
 	 */
 	public BidList getBidListByAccount(String account) {
 		return bidListRepository.findByAccount(account);

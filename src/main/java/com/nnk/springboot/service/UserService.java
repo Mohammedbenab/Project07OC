@@ -21,7 +21,7 @@ public class UserService {
 	
 	Logger logger = org.slf4j.LoggerFactory.getLogger(UserService.class);
 	
-	public static final String Password_Regex = "((?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[\\$\\%\\#\\@]).{8,})";//(?=.*[$%@#])
+	public static final String Password_Regex = "((?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[\\$\\%\\#\\@]).{8,})";
 	
 	private Pattern pattern;
 	private Matcher matcher;
@@ -35,11 +35,11 @@ public class UserService {
 	}
 	
 	/**
-	 * 
-	 * @param user
-	 * @return new User 
-	 * @throws UserNotFoundException
-	 * @throws InvalidPasswordException
+	 * This method allows to create a new user when all fields have been entered correctly.
+	 * @param user who will be registered in the data base
+	 * @return user registered
+	 * @throws UserNotFoundException is called when the user exist in the data base
+	 * @throws InvalidPasswordException is called when the password no much 
 	 */
 	public User saveUser(User user) throws UserNotFoundException, InvalidPasswordException {
 		User user1 = userRepository.findByUsername(user.getUsername());
@@ -58,9 +58,9 @@ public class UserService {
 	}
 
 	/**
-	 * 
-	 * @param user
-	 * @throws UserNotFoundException
+	 * This method delete a user if he exist in the data base
+	 * @param user, we want be remove
+	 * @throws UserNotFoundException is called when the user exist in the data base
 	 */
 	public void deleteUser(User user) throws UserNotFoundException {
 		User user1 = userRepository.findById(user.getId()).orElse(null);
@@ -74,10 +74,10 @@ public class UserService {
 	}
 	
 	/**
-	 * 
-	 * @param user
-	 * @return User update
-	 * @throws UserNotFoundException
+	 * This method update user if he exist in the data base, and all fields have been entered correctly
+	 * @param user, we want update
+	 * @return user update
+	 * @throws UserNotFoundException is called when the user exist in the data base
 	 */
 	public User updateUser(User user) throws UserNotFoundException {
 		User user1 = userRepository.findById(user.getId()).orElse(null);
@@ -95,10 +95,10 @@ public class UserService {
 	}
 	
 	/**
-	 * 
-	 * @param user
-	 * @return User by password updated
-	 * @throws InvalidPasswordException
+	 * This method update password of user, if he exist in the data base
+	 * @param user 
+	 * @return User by new password
+	 * @throws InvalidPasswordException is called when the password no much
 	 */
 	public User updatePassword(User user) throws InvalidPasswordException {
 		User user1 = userRepository.findById(user.getId()).orElse(null);
@@ -114,11 +114,10 @@ public class UserService {
 	}
 	
 	/**
-	 * 
+	 * This method fetch user, in the data base, by id, if user exist
 	 * @param id
-	 * @return User if exist in BDD
-	 * @throws UserNotFoundException 
-	 * @throws Exception 
+	 * @return user if exist in data base
+	 * @throws UserNotFoundException is called when the user exist in the data base
 	 */
 	public User getUserById(Integer id) throws UserNotFoundException{
 		User user = userRepository.findById(id).orElse(null);
@@ -131,7 +130,7 @@ public class UserService {
 	}
 	
 	/**
-	 * 
+	 * This method allows to fetch all users saved in data base
 	 * @return List of all users
 	 */
 	public List<User> getAllUsers(){
@@ -139,18 +138,18 @@ public class UserService {
 	}
 	
 	/**
-	 * 
-	 * @param username
-	 * @return User if name exist 
+	 * This method allows to fetch user by username if exist in data base
+	 * @param username, is a field of parameter connection
+	 * @return User if exist in the data base
 	 */
 	public User getUserByUsername(String username) {
 		return userRepository.getByUsername(username);
 	}
 	
 	/**
-	 * 
-	 * @param password
-	 * @return true or false for verify if password match with regex
+	 * This method verify if the password, entered by user, much with regex
+	 * @param password entered by user
+	 * @return a boolean 
 	 */
 	public boolean passwordMatch(String password) {
 		pattern = Pattern.compile(Password_Regex);

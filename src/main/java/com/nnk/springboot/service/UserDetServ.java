@@ -17,6 +17,11 @@ public class UserDetServ implements UserDetailsService{
 	@Autowired
 	private UserService userService;
 
+	/**
+	 * This method allows to fetch parameters of user for connect to application
+	 * @param username use by connected to app if user exist
+	 * @return parameters of user who try to connected
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub

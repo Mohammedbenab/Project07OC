@@ -19,10 +19,10 @@ public class RuleService {
 	private RuleRepository ruleRepository;
 	
 	/**
-	 * 
-	 * @param rule
-	 * @return new Rule 
-	 * @throws Exception
+	 * This method allows adding a new rule if not exist in the data base
+	 * @param rule is the object who to will be saved
+	 * @return rule added in the data base
+	 * @throws Exception if the object rule exist in the data base
 	 */
 	public Rule add(Rule rule) throws Exception {
 		Rule rule1 = ruleRepository.findById(rule.getId()).orElse(null);
@@ -37,10 +37,10 @@ public class RuleService {
 	}
 	
 	/**
-	 * 
-	 * @param rule
-	 * @return Rule updated
-	 * @throws Exception
+	 * This method allows to update object rule if exist
+	 * @param rule is the object who to will be updated
+	 * @return rule updated 
+	 * @throws Exception if the object rule exist in the data base
 	 */
 	public Rule update(Rule rule) throws Exception {
 		Rule ruleDB = ruleRepository.findById(rule.getId()).orElse(null);
@@ -61,9 +61,9 @@ public class RuleService {
 	}
 	
 	/**
-	 * 
-	 * @param rule
-	 * @throws Exception
+	 * This method allows to delete rule if exist in the data base
+	 * @param rule who will be deleted
+	 * @throws Exception if the object rule exist in the data base
 	 */
 	public void delete(Rule rule) throws Exception {
 		if(rule.getId() != null) {
@@ -77,7 +77,7 @@ public class RuleService {
 	}
 	
 	/**
-	 * 
+	 * This method allows to fetch all rules saved in the data base
 	 * @return list of rules
 	 */
 	public List<Rule> getList() {
@@ -87,10 +87,10 @@ public class RuleService {
 	}
 	
 	/**
-	 * 
-	 * @param id
-	 * @return rule
-	 * @throws Exception
+	 * this method allows to fetch rule by reference id if it exist in the data base
+	 * @param id use to fetch rule saved in the data base
+	 * @return rule found by id if exist
+	 * @throws Exception if the object rule exist in the data base
 	 */
 	public Rule getById(Integer id) throws Exception {
 		Rule rule = ruleRepository.findById(id).orElse(null);
